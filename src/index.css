@@ -1,0 +1,23 @@
+:root {
+    --purple: #3E416A;
+    --light-purple: #636786;
+}
+
+.bg-purple {
+    background-color: var(--purple);
+    color: #fff;
+}
+
+.text-purple {
+    color: var(--purple);
+}
+
+.btn-purple {
+    color: #fff;
+    background-color: var(--purple);
+}
+
+.btn-purple:hover {
+    color: #fff;
+    background-color: var(--light-purple);
+}

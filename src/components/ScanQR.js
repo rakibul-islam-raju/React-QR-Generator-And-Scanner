@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import QrReader from 'react-qr-reader';
+import QRImg from '../assets/image/qr.jpg';
 
 const ScanQR = () => {
     // const [scanResultFile, setScanResultFile] = useState('');
@@ -33,7 +34,6 @@ const ScanQR = () => {
             setScanResultWebCam(result);
 
             setScanDataList((previousState) => new Set([...previousState, result]));
-            // console.log('array', scanDataList.size);
         }
     };
 
@@ -47,8 +47,8 @@ const ScanQR = () => {
 
     return (
         <div>
-            <div className="container mt-5">
-                <div className="row justify-content-between">
+            <div className="container">
+                <div className="row justify-content-between mt-3">
                     <div className="col-md-6">
                         <div className="card">
                             <div className="card-header">Qcan QR code</div>
@@ -74,10 +74,10 @@ const ScanQR = () => {
                                 <button
                                     onClick={switchCamera}
                                     type="button"
-                                    className="btn btn-primary mb-2"
+                                    className="btn btn-purple w-100 mb-2"
                                 >
+                                    <i className="fas fa-camera me-3" />
                                     Switch Camera
-                                    {/* {facingMode === 'environment' ? 'Front Camera' : 'Back Camera'} */}
                                 </button>
                                 <QrReader
                                     // ref={qrRef}
@@ -91,19 +91,27 @@ const ScanQR = () => {
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <h5>
-                            Scanned Code With Webcam: <b>{scanResultWebCam}</b>
-                        </h5>
+                        <div className="card">
+                            <div className="card-body">
+                                {scanDataList.size > 0 ? (
+                                    <>
+                                        <h5>
+                                            Scanned Code With Webcam: <b>{scanResultWebCam}</b>
+                                        </h5>
 
-                        {scanDataList.size > 0 && (
-                            <div className="p-2 border border-secondary rounded mt-4">
-                                <h5>
-                                    {Array.from(scanDataList).map((item) => (
-                                        <span>{item}, </span>
-                                    ))}
-                                </h5>
+                                        <div className="p-2 border border-secondary rounded mt-4">
+                                            <h5>
+                                                {Array.from(scanDataList).map((item) => (
+                                                    <span className="badge bg-purple">{item}</span>
+                                                ))}
+                                            </h5>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <img className="img-fluid" src={QRImg} alt="qr-scanner" />
+                                )}
                             </div>
-                        )}
+                        </div>
                     </div>
                 </div>
             </div>
